@@ -1,0 +1,15 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 5fr 10fr;
+}
+
+.dialogsItems .item a:hover {
+    color: red;
+}
+.dialogsItems .item a {
+    color: black;
+    text-decoration: none;
+}
+.dialogs .item a.active {
+    color: red;
+}

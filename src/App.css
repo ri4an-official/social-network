@@ -1,0 +1,37 @@
+* {
+    margin: 3px;
+    padding: 1px;
+}
+
+.app-wrapper {
+    display: grid;
+
+    grid-template-areas:
+        "h h"
+        "n c";
+
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 2fr 10fr;
+}
+
+.app-wrapper-content {
+    padding: 10px;
+    grid-area: c;
+    background-color: #ffd700;
+}
+
+.ava{
+    border-radius: 65%;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+}
+
+.noblock{
+    display: inline-block;
+}
+
+.center{
+    position: relative;
+    display: flex;
+}

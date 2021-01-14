@@ -1,0 +1,17 @@
+.nav {
+    padding: 15px;
+    grid-area: n;
+    background-color: black;
+    text-align: center;
+}
+
+.item a:hover {
+    color: red;
+}
+div.item a {
+    color: #ffffff;
+    text-decoration: none;
+}
+.item a.active {
+    color: red;
+}

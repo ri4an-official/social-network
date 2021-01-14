@@ -1,0 +1,29 @@
+header {
+    grid-area: h;
+    background-color: black;
+    color: white;
+}
+
+header img {
+    border-radius: 65%;
+}
+
+.login {
+    color: white;
+    float: right;
+    padding: 10px;
+    margin: auto;
+    text-align: center;
+}
+
+.login a:hover {
+    color: red;
+}
+
+header .login a {
+    color: white;
+    text-decoration: none;
+}
+.login a.active {
+    color: red;
+}

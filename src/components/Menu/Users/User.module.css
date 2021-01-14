@@ -1,0 +1,21 @@
+.name {
+    display: inline-block;
+}
+.page.selectedPage {
+    font-weight: bold;
+    border-color: gray;
+}
+
+.paginator {
+    margin: 10px;
+}
+
+.page {
+    padding: 2px;
+    border: 1px solid gray;
+}
+
+.button{
+    float: right;
+    margin: 8px;
+}
