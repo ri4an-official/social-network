@@ -107,7 +107,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 followingInProgress: action.followingInProgress
                     ? [...state.followingInProgress, action.userId]
-                    : state.followingInProgress.filter(
+                    : state.users.filter(
                           (id) => id !== action.userId
                       ),
             };

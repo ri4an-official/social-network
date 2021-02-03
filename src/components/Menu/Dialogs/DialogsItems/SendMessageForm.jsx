@@ -8,7 +8,6 @@ export default reduxForm({ form: "sendMessage" })((props) => (
             component={({ meta, input, ...props }) => (
                 <FormControl
                     aria-describedby="basic-addon1"
-                    crossOrigin
                     as="textarea"
                     {...input}
                     {...props}
@@ -18,8 +17,6 @@ export default reduxForm({ form: "sendMessage" })((props) => (
             )}
             placeholder="Enter your message"
         />
-        <Button type="submit" variant="success">
-            Send
-        </Button>
+        <button className="btn btn-success">Send</button>
     </Form>
 ));

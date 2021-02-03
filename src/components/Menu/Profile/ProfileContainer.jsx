@@ -5,6 +5,7 @@ import { compose } from "redux";
 import {
     getProfile,
     getStatus,
+    savePhoto,
     updateStatus,
 } from "../../../redux/profile-reducer";
 import { Profile } from "./Profile";
@@ -17,8 +18,9 @@ export default compose(
             status: state.profilePage.status,
             authorizedUserID: state.auth.userId,
             isAuth: state.auth.isAuth,
+            photo: state.profilePage.photo,
         }),
-        { getProfile, getStatus, updateStatus }
+        { getProfile, getStatus, updateStatus, savePhoto }
     ),
     withRouter
 )((props) => {
@@ -27,6 +29,6 @@ export default compose(
         if (!id) props.history.push("/login");
         props.getProfile(id);
         props.getStatus(id);
-    }, []);
-    return <Profile {...props} />;
+    }, [props.match.params.userId, props.photo]);
+    return <Profile isOwner={!props.match.params.userId} {...props} />;
 });

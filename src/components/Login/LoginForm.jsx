@@ -1,7 +1,5 @@
 import { Button, Form, FormControl, FormGroup, FormLabel } from "react-bootstrap";
 import { Field, reduxForm } from "redux-form";
-import { required } from "../../utils/validators";
-import { Input } from "../common/FormControls/formControls";
 import styles from "./../common/FormControls/formControl.module.css";
 export default reduxForm({ form: "login" })((props) => (
     <Form onSubmit={props.handleSubmit}>

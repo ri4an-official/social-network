@@ -9,6 +9,11 @@ export const deletePost = (id) => ({
     id,
 });
 
+export const savePhotoSuccess = (photo) => ({
+    type: "SAVE_PHOTO_SUCCESS",
+    photo,
+});
+
 let initialState = {
     posts: [
         {
@@ -61,6 +66,10 @@ export const getStatus = (id) => async (dispatch) => {
     return data;
 };
 
+export const savePhoto = (fileName) => async (dispatch) => {
+    let data = await profiles.savePhoto(fileName);
+    dispatch(savePhotoSuccess(data.large));
+};
 export const updateStatus = (status) => async (dispatch) => {
     let data = await profiles.updateStatus(status);
     dispatch(setStatus(data));
@@ -96,6 +105,11 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 status: action.status,
+            };
+        case "SAVE_PHOTO_SUCCESS":
+            return {
+                ...state,
+                profile: { ...state.profile, photo: action.photo },
             };
 
         default:

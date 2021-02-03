@@ -1,7 +1,6 @@
 import React from "react";
 import Pagination from "react-js-pagination";
 import { User } from "./User";
-// import s from "./User.module.css";
 
 export const Users = (props) => (
     <div>

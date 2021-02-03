@@ -1,20 +1,17 @@
-import React, { lazy, useEffect } from "react";
+import { lazy, StrictMode, useEffect } from "react";
 import store from "./redux/redux-store";
-import { BrowserRouter, Route, withRouter } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, withRouter } from "react-router-dom";
 import "./App.css";
 import { Music } from "./components/Menu/Music/Music";
 import { Menu } from "./components/Menu/Menu";
 import { News } from "./components/Menu/News/News";
 import { Settings } from "./components/Menu/Settings/Settings";
-// import Dialogs from "./components/Menu/Dialogs/DialogsItems/DialogsContainer";
-// import Profile from "./components/Menu/Profile/ProfileContainer.jsx";
 import Users from "./components/Menu/Users/UsersContainer";
 import Header from "./components/Header/HeaderContainer";
-// import Login from "./components/Login/Login";
 import { connect, Provider } from "react-redux";
 import { compose } from "redux";
 import { initializeApp } from "./redux/app-reducer";
-import { PreloaderWhite } from "./components/common/Preloader/Preloader";
+import { Preloader } from "./components/common/Preloader/Preloader";
 import { withSuspence } from "./components/common/hocs/withSuspence";
 
 const Dialogs = lazy(() =>
@@ -25,7 +22,7 @@ const Profile = lazy(() =>
 );
 const Login = lazy(() => import("./components/Login/Login"));
 
-let AppContainer = compose(
+const AppContainer = compose(
     connect((state) => ({ initialized: state.app.initialized }), {
         initializeApp,
     }),
@@ -34,15 +31,10 @@ let AppContainer = compose(
     useEffect(() => props.initializeApp(), []);
     return props.initialized ? (
         <div className="app-wrapper">
-            <link
-                rel="stylesheet"
-                href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-                integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-                crossOrigin="anonymous"
-            />
             <Header />
             <Menu />
             <div className="app-wrapper-content">
+                {/* <Zodiac /> */}
                 <Route
                     path="/profile/:userId?"
                     render={withSuspence(Profile)}
@@ -53,20 +45,21 @@ let AppContainer = compose(
                 <Route path="/users" render={() => <Users />} />
                 <Route path="/settings" render={() => <Settings />} />
                 <Route path="/login" render={withSuspence(Login)} />
+                <Redirect from="/" to="/profile" />
             </div>
         </div>
     ) : (
-        <PreloaderWhite />
+        <Preloader type="white" />
     );
 });
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default (props) => (
-    <React.StrictMode>
+export default () => (
+    <StrictMode>
         <BrowserRouter>
             <Provider store={store}>
                 <AppContainer />
             </Provider>
         </BrowserRouter>
-    </React.StrictMode>
+    </StrictMode>
 );

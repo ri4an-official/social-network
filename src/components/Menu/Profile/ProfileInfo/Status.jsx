@@ -10,10 +10,10 @@ export default (props) => {
     return (
         <>
             {!editMode && (
-                <div onClick={() => setEditMode(true)}>{props.status}</div>
+                <span onClick={() => setEditMode(true)}>{props.status}</span>
             )}
             {editMode && (
-                <div>
+                <span>
                     <FormControl
                         autoFocus={true}
                         onBlur={() => {
@@ -23,7 +23,7 @@ export default (props) => {
                         value={status}
                         onChange={(e) => setStatus(e.currentTarget.value)}
                     />
-                </div>
+                </span>
             )}
         </>
     );

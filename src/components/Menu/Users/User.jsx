@@ -1,39 +1,37 @@
 import { NavLink } from "react-router-dom";
 import s from "./User.module.css";
-import { Avatar } from "../../common/Avatar";
 import { Button } from "react-bootstrap";
+import userPhoto from "../../../assets/images/user-img-1.png";
 
 export function User(props) {
     return (
         <div>
             <NavLink to={"/profile/" + props.id}>
-                <Avatar className="ava" src={props.photos.small} />
+                <img className="ava" src={props.photo ?? userPhoto} />
                 <h4 className={s.name}>{props.name}</h4>
             </NavLink>
             <span>
                 <span>{props.status}</span>{" "}
                 {props.followed ? (
-                    <Button
-                        className={s.button}
-                        variant="danger"
+                    <button
+                        className={s.button + " btn btn-danger"}
                         disabled={props.followingInProgress.some(
                             (id) => props.id === id
                         )}
                         onClick={() => props.unfollow(props.id)}
                     >
                         Unfollow
-                    </Button>
+                    </button>
                 ) : (
-                    <Button
-                        className={s.button}
-                        variant="success"
+                    <button
+                        className={s.button + " btn btn-success"}
                         disabled={props.followingInProgress.some(
                             (id) => props.id === id
                         )}
                         onClick={() => props.follow(props.id)}
                     >
                         Follow
-                    </Button>
+                    </button>
                 )}
             </span>
         </div>

@@ -1,9 +1,11 @@
-const { default: axios } = require("axios");
+import axios from "axios";
+
 const intance = axios.create({
     baseURL: "https://social-network.samuraijs.com/api/1.0/",
     withCredentials: true,
     headers: {
         "API-KEY": "8b6db175-dcb8-4dbb-9055-5aa4c87d64d3",
+        "Content-Type": "multipart/form-data",
     },
 });
 
@@ -34,20 +36,17 @@ export const profiles = {
     async getStatus(id) {
         return await intance.get(`profile/status/${id}`).then((r) => r.data);
     },
+    async savePhoto(photo) {
+        let r = await intance.put(
+            `profile/photo`,
+            new FormData().append("image", "", photo)
+        );
+        if (r.data.resultCode !== 0) console.log(r.data.message);
+        return r.data;
+    },
     async updateStatus(status) {
         let a = await intance.put(`profile/status`, { status });
-        return a.config.data;
-        // .toString()
-        // .replace("/", "")
-        // .replace(":", "")
-        // .replace("{", "")
-        // .replace("}", "")
-        // .replace("\\", "")
-        // .replace("}", "")
-        // .replace("null", "")
-        // .replace("undefined", "")
-        // .replace("/status", "")
-        // .replace("}", "");
+        return a.config.data.toJson().status;
     },
 };
 
